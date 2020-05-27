@@ -1,0 +1,61 @@
+{
+  "name": "justy-server",
+  "version": "0.0.1",
+  "description": "server side for justy app",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "jest",
+    "test:dev": "jest --watchAll",
+    "test:cov": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "start:local": "NODE_ENV=development ts-node .",
+    "start": "NODE_ENV=production ts-node .",
+    "start:dev": "NODE_ENV=development ts-node-dev .",
+    "migrate:local:init": "touch local.sqlite && NODE_ENV=development db-migrate up",
+    "migrate:local:up": "db-migrate up -e development",
+    "migrate:remote:up": "db-migrate up -e production",
+    "migrate:local:down": "db-migrate down -e development",
+    "migrate:remote:down": "db-migrate down -e production",
+    "migrate:create": "db-migrate create"
+  },
+  "repository": "git@github.com:kanekotic/justy-server.git",
+  "author": "kanekotic <alvarojosepl@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "apollo-server-express": "2.11.0",
+    "cors": "2.8.5",
+    "datasource-sql": "1.1.1",
+    "express": "4.17.1",
+    "express-basic-auth": "1.2.0",
+    "graphql": "14.6.0",
+    "graphql-import": "1.0.1",
+    "morgan": "1.10.0",
+    "pg": "7.18.2",
+    "ts-node": "8.6.2",
+    "typescript": "3.8.3",
+    "uuid": "7.0.2",
+    "winston": "3.2.1",
+    "winston-loggly-bulk": "3.0.1"
+  },
+  "devDependencies": {
+    "@types/cors": "2.8.6",
+    "@types/express": "4.17.3",
+    "@types/graphql": "14.5.0",
+    "@types/jest": "25.1.4",
+    "@types/node": "13.9.1",
+    "@types/uuid": "7.0.0",
+    "db-migrate": "^0.11.6",
+    "db-migrate-pg": "1.0.0",
+    "db-migrate-sqlite3": "0.4.0",
+    "faker": "4.1.0",
+    "jest": "25.1.0",
+    "nodemon": "2.0.2",
+    "sqlite3": "4.1.1",
+    "ts-jest": "25.2.1",
+    "ts-node-dev": "1.0.0-pre.44"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
+}
