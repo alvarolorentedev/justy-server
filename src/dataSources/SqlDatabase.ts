@@ -6,4 +6,10 @@ export default class sqlDatabase extends SQLDataSource {
         super(config)
     }
 
+    public async createBuyer(email: string, password: string): Promise<void> {
+        throw "Not Implemented";
+        
+    }
+    
+
 }
