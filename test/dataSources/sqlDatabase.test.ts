@@ -1,5 +1,6 @@
 import sqlDatabase from '../../src/dataSources/SqlDatabase'
 import * as faker from "faker"
+import { compare } from "bcrypt"
 
 describe('sqlDatabase', () => {
     const config = {
@@ -29,7 +30,7 @@ describe('sqlDatabase', () => {
             const result = await getBuyerbyEmail(buyerEmail)
             expect(result).not.toBeUndefined()
             expect(result.email).toEqual(buyerEmail)
-            expect(result.password).toEqual(buyerPassword)
+            expect(await compare(buyerPassword, result.password)).toBeTruthy()
         });
     })
 
