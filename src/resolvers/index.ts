@@ -1,7 +1,9 @@
-const Query = { }
-const Mutation = { }
+import buyer from './buyer'
+
+const Query = { ...buyer.Query }
+const Mutation = { ...buyer.Mutation }
 
 export default {
-    Query,
+    // Query,
     Mutation
   }

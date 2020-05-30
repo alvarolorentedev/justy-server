@@ -1,6 +1,7 @@
 # import SimpleResponse from "simpleResponse.graphql"
 
 type Query {
+    empty: String
 }
 
 type Mutation {
