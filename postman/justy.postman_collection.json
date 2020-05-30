@@ -22,7 +22,7 @@
 									"",
 									"pm.test(\"is expected response\", function () {",
 									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.data.joinGame.success).to.eql(true);",
+									"    pm.expect(jsonData.data.createBuyer.success).to.eql(true);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -67,8 +67,8 @@
 							},
 							{
 								"key": "",
-								"value": "{{gameid}}",
-								"type": "text"
+								"type": "text",
+								"value": "{{gameid}}"
 							}
 						],
 						"body": {
