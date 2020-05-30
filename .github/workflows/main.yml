@@ -43,5 +43,5 @@ jobs:
     # - name: Run Integration
     #   uses: matt-ball/newman-action@master
     #   with:
-    #     collection: postman/infecteed.postman_collection.json
+    #     collection: postman/justy.postman_collection.json
     #     environment: postman/smoke.postman_environment.json
