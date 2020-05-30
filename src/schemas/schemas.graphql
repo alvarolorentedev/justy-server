@@ -1,7 +1,8 @@
-type Query {
+# import SimpleResponse from "simpleResponse.graphql"
 
+type Query {
 }
 
 type Mutation {
-
+    createBuyer(email: String!, password: String!): SimpleResponse!
 }
