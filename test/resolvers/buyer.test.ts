@@ -22,8 +22,8 @@ describe('buyer resolvers', () => {
 
     describe('Mutation', () => {
         test('should have create with the call to sqlDatabase with parameters', async () => {
-            await resolvers.Mutation.createBuyer(undefined, { email, password }, { dataSources })
-            expect(mockCreateBuyer).toHaveBeenCalledWith(dataSources.sqlAPI, email, password)
+            await resolvers.Mutation.createBuyer(undefined, { email, password }, { dataSources, isTestRequest: true })
+            expect(mockCreateBuyer).toHaveBeenCalledWith(dataSources.sqlAPI, email, password, true)
 
         })
 

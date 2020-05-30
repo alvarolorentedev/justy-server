@@ -19,16 +19,17 @@ describe('create buyer', () => {
         let result
         const email = faker.random.uuid()
         const password = faker.random.uuid() 
+        const isTestRequest = false 
 
         beforeAll(async () => {
             sqlDataSource.createBuyer.mockReset()
             sqlDataSource.createBuyer.mockResolvedValue(undefined)
             //@ts-ignore
-            result = await createBuyer(sqlDataSource, email, password)
+            result = await createBuyer(sqlDataSource, email, password, isTestRequest)
         })
 
         test('should call database', () => {
-            expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(email, password)
+            expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(email, password, isTestRequest)
         })        
         
         test('should return success response with expected id', () => {
@@ -42,15 +43,17 @@ describe('create buyer', () => {
         const expectedError = faker.random.uuid()
         const email = faker.random.uuid()
         const password = faker.random.uuid() 
+        const isTestRequest = false 
+
         beforeAll(async () => {
             sqlDataSource.createBuyer.mockReset()
             mockErrorLogger.mockReset()
             sqlDataSource.createBuyer.mockRejectedValue(expectedError)
             //@ts-ignore
-            result = await createBuyer(sqlDataSource, email, password)
+            result = await createBuyer(sqlDataSource, email, password, isTestRequest)
         })
         test('should call database', () => {
-            expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(email, password)
+            expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(email, password, isTestRequest)
         })        
         
         test('should call error logger with error', () => {
