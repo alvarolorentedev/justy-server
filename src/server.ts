@@ -12,9 +12,9 @@ const server = new ApolloServer({
     typeDefs: gql(importSchema(`${__dirname}/schemas/schemas.graphql`)),
     resolvers,
     dataSources: () => dataSource,
-    context: (integrationContext) => {
-      isTestRequest: integrationContext.req.headers.isTest === 'true'
-    },
+    context: (integrationContext) => ({
+      isTestRequest: integrationContext.req.headers.istest === 'true'
+    }),
     playground: true,
     introspection: true 
 })
