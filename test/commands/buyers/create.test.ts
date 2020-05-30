@@ -10,7 +10,7 @@ jest.mock('../../../src/utils/logger', () => ({
 import createBuyer from "../../../src/commands/buyers/create"
 import * as faker from "faker"
 
-describe('create buyer', () => {
+describe.skip('create buyer', () => {
     const sqlDataSource = {
         createBuyer: jest.fn(),
     }
