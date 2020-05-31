@@ -6,4 +6,5 @@ type Query {
 
 type Mutation {
     createBuyer(email: String!, password: String!): SimpleResponse!
+    createBidder(email: String!, password: String!): SimpleResponse!
 }

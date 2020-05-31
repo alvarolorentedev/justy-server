@@ -1,13 +1,13 @@
 const mockCreateBuyer = jest.fn()
 
-jest.mock('../../src/commands/buyers/create', () => ({
+jest.mock('../../../src/commands/bidders/create', () => ({
     __esModule: true,
     default: mockCreateBuyer
 }))
 
-import resolvers from '../../src/resolvers/buyer'
+import resolvers from '../../../src/resolvers/bidder'
 import * as faker from "faker"
-import { DataSources } from '../../src/types/DataSources'
+import { DataSources } from '../../../src/types/DataSources'
 
 describe('buyer resolvers', () => {
 
@@ -24,8 +24,8 @@ describe('buyer resolvers', () => {
 
     describe('Mutation', () => {
         test('should have create with the call to sqlDatabase with parameters', async () => {
-            await resolvers.Mutation.createBuyer(undefined, { email, password }, { dataSources, isTestRequest: true })
-            expect(mockCreateBuyer).toHaveBeenCalledWith(dataSources.sqlBuyerAPI, email, password, true)
+            await resolvers.Mutation.createBidder(undefined, { email, password }, { dataSources, isTestRequest: true })
+            expect(mockCreateBuyer).toHaveBeenCalledWith(dataSources.sqlBidderAPI, email, password, true)
 
         })
 

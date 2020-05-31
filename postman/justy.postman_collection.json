@@ -66,9 +66,9 @@
 								"value": "application/json"
 							},
 							{
-								"key": "",
+								"key": "isTest",
 								"type": "text",
-								"value": "{{gameid}}"
+								"value": "true"
 							}
 						],
 						"body": {
@@ -76,6 +76,93 @@
 							"graphql": {
 								"query": "mutation($email: String!, $password: String!){\n  createBuyer(email: $email, password: $password){ \n      success\n  }\n}",
 								"variables": "{\n    \"email\": \"{{buyer_email}}\",\n    \"password\": \"{{buyer_password}}\"\n}"
+							},
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/graphql",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create bidder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ced5920b-c6e2-4cd1-b46f-a176190c514e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"is expected response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data.createBidder.success).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "747f44f2-fe1b-4fbc-a618-ead01eccd781",
+								"exec": [
+									"var uuid = require('uuid');",
+									"pm.environment.set(\"bidder_email\", `${uuid.v4()}@somewhere.com`);",
+									"pm.environment.set(\"bidder_password\", uuid.v4());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "isTest",
+								"type": "text",
+								"value": "true"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($email: String!, $password: String!){\n  createBidder(email: $email, password: $password){ \n      success\n  }\n}",
+								"variables": "{\n    \"email\": \"{{bidder_email}}\",\n    \"password\": \"{{bidder_password}}\"\n}"
 							},
 							"options": {
 								"raw": {

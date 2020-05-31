@@ -1,5 +1,6 @@
 import { DataSource } from "apollo-datasource"
-import SqlByerDatabase from './SqlBuyerDatabase'
+import SqlBuyerDatabase from './SqlBuyerDatabase'
+import SqlBidderDatabase from './bidder/SqlDatabase'
 import { DataSources } from "../types/DataSources"
 
 let sqlAPIConfig: any = {
@@ -18,8 +19,10 @@ if(process.env.NODE_ENV !== 'production')
         useNullAsDefault: true
     }
 
-const sqlBuyerAPI = new SqlByerDatabase(sqlAPIConfig) as DataSource
+const sqlBuyerAPI = new SqlBuyerDatabase(sqlAPIConfig) as DataSource
+const sqlBidderAPI = new SqlBidderDatabase(sqlAPIConfig) as DataSource
 
 export default {
-    sqlBuyerAPI
+    sqlBuyerAPI,
+    sqlBidderAPI
 } as DataSources
