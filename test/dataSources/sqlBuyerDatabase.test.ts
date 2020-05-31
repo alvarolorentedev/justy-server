@@ -1,4 +1,4 @@
-import sqlDatabase from '../../src/dataSources/SqlDatabase'
+import sqlDatabase from '../../src/dataSources/SqlBuyerDatabase'
 import * as faker from "faker"
 import { compare } from "bcrypt"
 

@@ -1,5 +1,6 @@
 import { DataSource } from "apollo-datasource"
-import sqlDatabase from './SqlDatabase'
+import SqlByerDatabase from './SqlBuyerDatabase'
+import { DataSources } from "../types/DataSources"
 
 let sqlAPIConfig: any = {
     client: "pg",
@@ -13,11 +14,12 @@ if(process.env.NODE_ENV !== 'production')
         client: "sqlite3",
         connection: {
             filename: "./local.sqlite"
-        }
+        },
+        useNullAsDefault: true
     }
-  
-const sqlAPI = new sqlDatabase(sqlAPIConfig) as DataSource
-  
+
+const sqlBuyerAPI = new SqlByerDatabase(sqlAPIConfig) as DataSource
+
 export default {
-    sqlAPI
-}
+    sqlBuyerAPI
+} as DataSources

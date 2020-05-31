@@ -3,7 +3,7 @@ import { v4 } from "uuid"
 import { SQLDataSource } from "datasource-sql"
 import { hash } from "bcrypt"
 
-export default class sqlDatabase extends SQLDataSource {
+export default class SqlBuyerDatabase extends SQLDataSource {
     saltRounds = 10;
 
     constructor(config: any){
@@ -15,7 +15,5 @@ export default class sqlDatabase extends SQLDataSource {
         const hashPassword = await hash(password, this.saltRounds)
         await this.db.insert({ id, email, password: hashPassword, isTest: isTestRequest? 1 : 0 }).into('BUYERS')
     }
-    
-    
 
 }
