@@ -24,15 +24,27 @@ describe('sqlDatabase', () => {
     })
 
     describe('generates buyer correctly', () => {
-        let buyerPassword: string = faker.internet.password()
-        let buyerEmail: string = faker.internet.email()
-        let isTest: boolean = true
-        test('should create a user correctly', async () => {
-            await subject.createBuyer(buyerEmail, buyerPassword, isTest)
+        
+
+        test('should create a test user correctly', async () => {
+            const buyerPassword: string = faker.internet.password()
+            const buyerEmail: string = faker.internet.email()
+            await subject.createBuyer(buyerEmail, buyerPassword, true)
             const result = await getBuyerbyEmail(buyerEmail)
             expect(result).not.toBeUndefined()
             expect(result.email).toEqual(buyerEmail)
             expect(result.isTest).toEqual(1)
+            expect(await compare(buyerPassword, result.password)).toBeTruthy()
+        });
+        
+        test('should create a normal user correctly', async () => {
+            const buyerPassword: string = faker.internet.password()
+            const buyerEmail: string = faker.internet.email()
+            await subject.createBuyer(buyerEmail, buyerPassword, false)
+            const result = await getBuyerbyEmail(buyerEmail)
+            expect(result).not.toBeUndefined()
+            expect(result.email).toEqual(buyerEmail)
+            expect(result.isTest).toEqual(0)
             expect(await compare(buyerPassword, result.password)).toBeTruthy()
         });
     })

@@ -10,10 +10,10 @@ export default class sqlDatabase extends SQLDataSource {
         super(config)
     }
 
-    public async createBuyer(email: string, password: string, isTest: boolean): Promise<void> {
+    public async createBuyer(email: string, password: string, isTestRequest: boolean): Promise<void> {
         const id = v4()
         const hashPassword = await hash(password, this.saltRounds)
-        await this.db.insert({ id, email, password: hashPassword, isTest }).into('BUYERS')
+        await this.db.insert({ id, email, password: hashPassword, isTest: isTestRequest? 1 : 0 }).into('BUYERS')
     }
     
     
