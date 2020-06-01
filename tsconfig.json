@@ -2,7 +2,6 @@
     "compilerOptions": {
         "target": "es6",
         "moduleResolution": "node",
-        "esModuleInterop": true,
     },
     "include": ["src/**/*", "types/index.d.ts"],
     "exclude": ["node_modules", "**/*.test.ts"]
