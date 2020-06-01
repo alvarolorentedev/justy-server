@@ -1,5 +1,5 @@
 import { DataSource } from "apollo-datasource"
-import SqlBuyerDatabase from './SqlBuyerDatabase'
+import SqlBuyerDatabase from './buyer/SqlDatabase'
 import SqlBidderDatabase from './bidder/SqlDatabase'
 import { DataSources } from "../types/DataSources"
 

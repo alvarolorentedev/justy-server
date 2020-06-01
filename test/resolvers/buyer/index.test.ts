@@ -1,13 +1,13 @@
 const mockCreateBuyer = jest.fn()
 
-jest.mock('../../src/commands/buyers/create', () => ({
+jest.mock('../../../src/commands/buyer/create', () => ({
     __esModule: true,
     default: mockCreateBuyer
 }))
 
-import resolvers from '../../src/resolvers/buyer'
+import resolvers from '../../../src/resolvers/buyer'
 import * as faker from "faker"
-import { DataSources } from '../../src/types/DataSources'
+import { DataSources } from '../../../src/types/DataSources'
 
 describe('buyer resolvers', () => {
 

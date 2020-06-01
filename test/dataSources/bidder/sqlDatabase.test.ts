@@ -7,7 +7,8 @@ describe('sqlDatabase', () => {
         client: "sqlite3",
         connection: {
             filename: ":memory:"
-        }
+        },
+        useNullAsDefault: true
     }
     let subject = new sqlDatabase(config)
     beforeAll(async () => {

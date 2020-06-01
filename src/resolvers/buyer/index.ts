@@ -1,4 +1,4 @@
-import create from '../commands/buyers/create'
+import create from '../../commands/buyer/create'
 
 export default {
     Query: {

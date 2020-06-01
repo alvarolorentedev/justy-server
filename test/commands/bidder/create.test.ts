@@ -7,12 +7,12 @@ jest.mock('../../../src/utils/logger', () => ({
     }
 }))
 
-import createBuyer from "../../../src/commands/buyers/create"
+import create from "../../../src/commands/bidder/create"
 import * as faker from "faker"
 
 describe('create buyer', () => {
     const sqlDataSource = {
-        createBuyer: jest.fn(),
+        createBidder: jest.fn(),
     }
 
     describe('create buyer correctly', () =>{
@@ -22,14 +22,14 @@ describe('create buyer', () => {
         const isTestRequest = false 
 
         beforeAll(async () => {
-            sqlDataSource.createBuyer.mockReset()
-            sqlDataSource.createBuyer.mockResolvedValue(undefined)
+            sqlDataSource.createBidder.mockReset()
+            sqlDataSource.createBidder.mockResolvedValue(undefined)
             //@ts-ignore
-            result = await createBuyer(sqlDataSource, email, password, isTestRequest)
+            result = await create(sqlDataSource, email, password, isTestRequest)
         })
 
         test('should call database', () => {
-            expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(email, password, isTestRequest)
+            expect(sqlDataSource.createBidder).toHaveBeenCalledWith(email, password, isTestRequest)
         })        
         
         test('should return success response with expected id', () => {
@@ -46,14 +46,14 @@ describe('create buyer', () => {
         const isTestRequest = false 
 
         beforeAll(async () => {
-            sqlDataSource.createBuyer.mockReset()
+            sqlDataSource.createBidder.mockReset()
             mockErrorLogger.mockReset()
-            sqlDataSource.createBuyer.mockRejectedValue(expectedError)
+            sqlDataSource.createBidder.mockRejectedValue(expectedError)
             //@ts-ignore
-            result = await createBuyer(sqlDataSource, email, password, isTestRequest)
+            result = await create(sqlDataSource, email, password, isTestRequest)
         })
         test('should call database', () => {
-            expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(email, password, isTestRequest)
+            expect(sqlDataSource.createBidder).toHaveBeenCalledWith(email, password, isTestRequest)
         })        
         
         test('should call error logger with error', () => {

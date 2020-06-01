@@ -1,9 +1,9 @@
-/// <reference types="../../types/index" />
+/// <reference types="../../../types/index" />
 import { v4 } from "uuid"
 import { SQLDataSource } from "datasource-sql"
 import { hash } from "bcrypt"
 
-export default class SqlBuyerDatabase extends SQLDataSource {
+export default class SqlDatabase extends SQLDataSource {
     saltRounds = 10;
 
     constructor(config: any){

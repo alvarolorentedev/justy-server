@@ -1,4 +1,4 @@
-import sqlDatabase from '../../src/dataSources/SqlBuyerDatabase'
+import sqlDatabase from '../../../src/dataSources/buyer/SqlDatabase'
 import * as faker from "faker"
 import { compare } from "bcrypt"
 
@@ -7,7 +7,8 @@ describe('sqlDatabase', () => {
         client: "sqlite3",
         connection: {
             filename: ":memory:"
-        }
+        },
+        useNullAsDefault: true
     }
     let subject = new sqlDatabase(config)
     beforeAll(async () => {

@@ -1,6 +1,6 @@
 const mockCreateBuyer = jest.fn()
 
-jest.mock('../../../src/commands/bidders/create', () => ({
+jest.mock('../../../src/commands/bidder/create', () => ({
     __esModule: true,
     default: mockCreateBuyer
 }))

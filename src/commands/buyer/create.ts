@@ -1,4 +1,4 @@
-import sqlBuyerDatabase from "../../dataSources/SqlBuyerDatabase"
+import sqlBuyerDatabase from "../../dataSources/buyer/SqlDatabase"
 import logger from '../../utils/logger'
 import { SimpleResponse } from '../../types/simpleResponse'
 
