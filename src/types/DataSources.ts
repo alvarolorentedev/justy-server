@@ -1,6 +1,6 @@
-import { DataSource } from "apollo-datasource";
+import { DataSource } from 'apollo-datasource';
 
 export type DataSources = {
-    sqlBuyerAPI: DataSource;
-    sqlBidderAPI: DataSource;
+  sqlBuyerAPI: DataSource;
+  sqlBidderAPI: DataSource;
 };

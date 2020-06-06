@@ -1,3 +1,3 @@
 export type SimpleResponse = {
-    success: boolean;
+  success: boolean;
 };
