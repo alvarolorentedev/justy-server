@@ -2,15 +2,16 @@ import create from '../../commands/buyer/create';
 import BuyerResolver from '../../types/BuyerResolver';
 import { DataSources } from '../../types/DataSources';
 
-export default {
+export default ({
   Query: {},
   Mutation: {
     createBuyer: async (
       _,
-      { email, password }: { email: string; password: string; },
+      { email, password }: { email: string; password: string },
       {
         dataSources,
-        isTestRequest, }: { dataSources: DataSources; isTestRequest: boolean; }
+        isTestRequest,
+      }: { dataSources: DataSources; isTestRequest: boolean }
     ) => await create(dataSources.sqlBuyerAPI, email, password, isTestRequest),
   },
-} as unknown as BuyerResolver;
+} as unknown) as BuyerResolver;
