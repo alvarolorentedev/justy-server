@@ -1,8 +1,14 @@
 const mockCreateBuyer = jest.fn();
+const mockLoginBuyer = jest.fn();
 
 jest.mock('../../../src/commands/buyer/create', () => ({
   __esModule: true,
   default: mockCreateBuyer,
+}));
+
+jest.mock('../../../src/commands/buyer/login', () => ({
+  __esModule: true,
+  default: mockLoginBuyer,
 }));
 
 import resolvers from '../../../src/resolvers/buyer';
@@ -19,6 +25,7 @@ describe('buyer resolvers', () => {
 
   beforeAll(() => {
     mockCreateBuyer.mockReset();
+    mockLoginBuyer.mockReset();
   });
 
   describe('Mutation', () => {
@@ -39,13 +46,13 @@ describe('buyer resolvers', () => {
     });
 
     describe('Login', () => {
-      test('should have create with the call to sqlDatabase with parameters', async () => {
-        await resolvers.Mutation.createBuyer(
+      test('should have login with the call to sqlDatabase with parameters', async () => {
+        await resolvers.Mutation.loginBuyer(
           undefined,
           { email, password },
           { dataSources, isTestRequest: true }
         );
-        expect(mockCreateBuyer).toHaveBeenCalledWith(
+        expect(mockLoginBuyer).toHaveBeenCalledWith(
           dataSources.sqlBuyerAPI,
           email,
           password,
