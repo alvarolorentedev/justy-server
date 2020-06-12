@@ -7,11 +7,10 @@ export default {
   Mutation: {
     createBidder: async (
       _,
-      { email, password }: { email: string; password: string },
+      { email, password }: { email: string; password: string; },
       {
         dataSources,
-        isTestRequest,
-      }: { dataSources: DataSources; isTestRequest: boolean }
+        isTestRequest, }: { dataSources: DataSources; isTestRequest: boolean; }
     ) => await create(dataSources.sqlBidderAPI, email, password, isTestRequest),
   },
-} as BidderResolver;
+} as unknown as BidderResolver;

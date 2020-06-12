@@ -1,8 +1,9 @@
+import { IResolverObject } from "apollo-server-express";
+
 export type BidderResolver = {
   Query: Record<string, unknown>;
   Mutation: {
-    /* eslint-disable-next-line @typescript-eslint/ban-types */
-    createBidder: Function;
+    createBidder: IResolverObject<any, any, any>;
   };
 };
 
