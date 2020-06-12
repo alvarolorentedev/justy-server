@@ -1,4 +1,5 @@
 import sqlBuyerDatabase from '../../dataSources/buyer/SqlDatabase';
+import logger from '../../utils/logger';
 import { SimpleResponse } from '../../types/simpleResponse';
 
 export default async function loginBuyer(
@@ -7,6 +8,11 @@ export default async function loginBuyer(
   password: string,
   isTestRequest: boolean
 ): Promise<SimpleResponse> {
-  throw Error("Not Implemented");
-
+  try {
+    await dataSource.loginBuyer(email, password, isTestRequest);
+    return { success: true };
+  } catch (error) {
+    logger.error(error);
+    return { success: false };
+  }
 }

@@ -26,4 +26,8 @@ export default class SqlDatabase extends SQLDataSource {
       })
       .into('BUYERS');
   }
+
+  loginBuyer(email: string, password: string, isTestRequest: boolean) {
+    throw new Error("Method not implemented.");
+  }
 }
