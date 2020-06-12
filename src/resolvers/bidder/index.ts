@@ -1,5 +1,6 @@
 import create from '../../commands/bidder/create';
 import BidderResolver from '../../types/BidderResolver';
+import { DataSources } from '../../types/DataSources';
 
 export default {
   Query: {},
@@ -10,7 +11,7 @@ export default {
       {
         dataSources,
         isTestRequest,
-      }: { dataSources: any; isTestRequest: boolean }
+      }: { dataSources: DataSources; isTestRequest: boolean }
     ) => await create(dataSources.sqlBidderAPI, email, password, isTestRequest),
   },
 } as BidderResolver;

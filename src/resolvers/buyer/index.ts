@@ -1,5 +1,6 @@
 import create from '../../commands/buyer/create';
 import BuyerResolver from '../../types/BuyerResolver';
+import { DataSources } from '../../types/DataSources';
 
 export default {
   Query: {},
@@ -10,7 +11,7 @@ export default {
       {
         dataSources,
         isTestRequest,
-      }: { dataSources: any; isTestRequest: boolean }
+      }: { dataSources: DataSources; isTestRequest: boolean }
     ) => await create(dataSources.sqlBuyerAPI, email, password, isTestRequest),
   },
 } as BuyerResolver;

@@ -1,6 +1,7 @@
 import sqlDatabase from '../../../src/dataSources/bidder/SqlDatabase';
 import * as faker from 'faker';
 import { compare } from 'bcrypt';
+import BidderSerialized from '../../../src/types/BidderSerialized';
 
 describe('sqlDatabase', () => {
   const config = {
@@ -48,7 +49,7 @@ describe('sqlDatabase', () => {
     });
   });
 
-  const getBuyerbyEmail = async (email: string): Promise<any> => {
+  const getBuyerbyEmail = async (email: string): Promise<BidderSerialized> => {
     const queryResult = (
       await subject.db.select('*').from('BIDDERS').where({ email })
     )[0];
