@@ -1,9 +1,9 @@
-import { IResolverObject } from "apollo-server-express";
+import { IResolverObject } from 'apollo-server-express';
 
 export type BuyerResolver = {
   Query: Record<string, unknown>;
   Mutation: {
-    /* eslint-disable-next-line @typescript-eslint/ban-types */
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     createBuyer: IResolverObject<any, any, any>;
   };
 };

@@ -22,18 +22,36 @@ describe('buyer resolvers', () => {
   });
 
   describe('Mutation', () => {
-    test('should have create with the call to sqlDatabase with parameters', async () => {
-      await resolvers.Mutation.createBuyer(
-        undefined,
-        { email, password },
-        { dataSources, isTestRequest: true }
-      );
-      expect(mockCreateBuyer).toHaveBeenCalledWith(
-        dataSources.sqlBuyerAPI,
-        email,
-        password,
-        true
-      );
+    describe('Create', () => {
+      test('should have create with the call to sqlDatabase with parameters', async () => {
+        await resolvers.Mutation.createBuyer(
+          undefined,
+          { email, password },
+          { dataSources, isTestRequest: true }
+        );
+        expect(mockCreateBuyer).toHaveBeenCalledWith(
+          dataSources.sqlBuyerAPI,
+          email,
+          password,
+          true
+        );
+      });
+    });
+
+    describe('Login', () => {
+      test('should have create with the call to sqlDatabase with parameters', async () => {
+        await resolvers.Mutation.createBuyer(
+          undefined,
+          { email, password },
+          { dataSources, isTestRequest: true }
+        );
+        expect(mockCreateBuyer).toHaveBeenCalledWith(
+          dataSources.sqlBuyerAPI,
+          email,
+          password,
+          true
+        );
+      });
     });
   });
 });
