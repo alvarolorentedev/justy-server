@@ -9,7 +9,7 @@ export default async function createBuyer(
   isTestRequest: boolean
 ): Promise<SimpleResponse> {
   try {
-    await dataSource.createBuyer(email, password, isTestRequest);
+    await dataSource.create(email, password, isTestRequest);
     return { success: true };
   } catch (error) {
     logger.error(error);

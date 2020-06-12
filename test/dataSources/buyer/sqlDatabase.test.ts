@@ -26,10 +26,11 @@ describe('sqlDatabase', () => {
   });
 
   describe('generates buyer correctly', () => {
+    const buyerPassword: string = faker.internet.password();
+    const buyerEmail: string = faker.internet.email();
+
     test('should create a test user correctly', async () => {
-      const buyerPassword: string = faker.internet.password();
-      const buyerEmail: string = faker.internet.email();
-      await subject.createBuyer(buyerEmail, buyerPassword, true);
+      await subject.create(buyerEmail, buyerPassword, true);
       const result = await getBuyerbyEmail(buyerEmail);
       expect(result).not.toBeUndefined();
       expect(result.email).toEqual(buyerEmail);
@@ -40,12 +41,35 @@ describe('sqlDatabase', () => {
     test('should create a normal user correctly', async () => {
       const buyerPassword: string = faker.internet.password();
       const buyerEmail: string = faker.internet.email();
-      await subject.createBuyer(buyerEmail, buyerPassword, false);
+      await subject.create(buyerEmail, buyerPassword, false);
       const result = await getBuyerbyEmail(buyerEmail);
       expect(result).not.toBeUndefined();
       expect(result.email).toEqual(buyerEmail);
       expect(result.isTest).toEqual(0);
       expect(await compare(buyerPassword, result.password)).toBeTruthy();
+    });
+
+    test('should fail create a duplicated user', async () => {
+      try {
+        await subject.create(buyerEmail, buyerPassword, false);
+        fail();
+      } catch (error) {}
+    });
+
+    test('should be able to login a user with correct password', async () => {
+      const result = await subject.validateCredentials(
+        buyerEmail,
+        buyerPassword
+      );
+      expect(result).toEqual(true);
+    });
+
+    test('should not be able to login a user with incorrect password', async () => {
+      const result = await subject.validateCredentials(
+        buyerEmail,
+        faker.internet.password()
+      );
+      expect(result).toEqual(false);
     });
   });
 

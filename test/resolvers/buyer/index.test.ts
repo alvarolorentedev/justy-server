@@ -1,14 +1,14 @@
 const mockCreateBuyer = jest.fn();
-const mockLoginBuyer = jest.fn();
+const mockvalidateCredentialsBuyer = jest.fn();
 
 jest.mock('../../../src/commands/buyer/create', () => ({
   __esModule: true,
   default: mockCreateBuyer,
 }));
 
-jest.mock('../../../src/commands/buyer/login', () => ({
+jest.mock('../../../src/commands/buyer/validateCredentials', () => ({
   __esModule: true,
-  default: mockLoginBuyer,
+  default: mockvalidateCredentialsBuyer,
 }));
 
 import resolvers from '../../../src/resolvers/buyer';
@@ -25,7 +25,7 @@ describe('buyer resolvers', () => {
 
   beforeAll(() => {
     mockCreateBuyer.mockReset();
-    mockLoginBuyer.mockReset();
+    mockvalidateCredentialsBuyer.mockReset();
   });
 
   describe('Mutation', () => {
@@ -45,18 +45,17 @@ describe('buyer resolvers', () => {
       });
     });
 
-    describe('Login', () => {
-      test('should have login with the call to sqlDatabase with parameters', async () => {
-        await resolvers.Mutation.loginBuyer(
+    describe('validateCredentials', () => {
+      test('should have validateCredentials with the call to sqlDatabase with parameters', async () => {
+        await resolvers.Mutation.validateCredentialsBuyer(
           undefined,
           { email, password },
-          { dataSources, isTestRequest: true }
+          { dataSources }
         );
-        expect(mockLoginBuyer).toHaveBeenCalledWith(
+        expect(mockvalidateCredentialsBuyer).toHaveBeenCalledWith(
           dataSources.sqlBuyerAPI,
           email,
-          password,
-          true
+          password
         );
       });
     });

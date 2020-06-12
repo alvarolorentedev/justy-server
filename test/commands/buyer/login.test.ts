@@ -7,40 +7,37 @@ jest.mock('../../../src/utils/logger', () => ({
   },
 }));
 
-import loginBuyer from '../../../src/commands/buyer/login';
+import validateCredentials from '../../../src/commands/buyer/validateCredentials';
 import * as faker from 'faker';
 import sqlDatabase from '../../../src/dataSources/buyer/SqlDatabase';
 
-describe('create buyer', () => {
+describe('validate credentials buyer', () => {
   const sqlDataSource = {
-    loginBuyer: jest.fn(),
+    validateCredentials: jest.fn(),
   };
 
   const getSqlDataSourceFromMock = (): sqlDatabase =>
     (sqlDataSource as unknown) as sqlDatabase;
 
-  describe('create buyer correctly', () => {
+  describe('validate credentials correctly', () => {
     let result;
     const email = faker.random.uuid();
     const password = faker.random.uuid();
-    const isTestRequest = false;
 
     beforeAll(async () => {
-      sqlDataSource.loginBuyer.mockReset();
-      sqlDataSource.loginBuyer.mockResolvedValue(undefined);
-      result = await loginBuyer(
+      sqlDataSource.validateCredentials.mockReset();
+      sqlDataSource.validateCredentials.mockResolvedValue(undefined);
+      result = await validateCredentials(
         getSqlDataSourceFromMock(),
         email,
-        password,
-        isTestRequest
+        password
       );
     });
 
     test('should call database', () => {
-      expect(sqlDataSource.loginBuyer).toHaveBeenCalledWith(
+      expect(sqlDataSource.validateCredentials).toHaveBeenCalledWith(
         email,
-        password,
-        isTestRequest
+        password
       );
     });
 
@@ -57,21 +54,19 @@ describe('create buyer', () => {
     const isTestRequest = false;
 
     beforeAll(async () => {
-      sqlDataSource.loginBuyer.mockReset();
+      sqlDataSource.validateCredentials.mockReset();
       mockErrorLogger.mockReset();
-      sqlDataSource.loginBuyer.mockRejectedValue(expectedError);
-      result = await loginBuyer(
+      sqlDataSource.validateCredentials.mockRejectedValue(expectedError);
+      result = await validateCredentials(
         getSqlDataSourceFromMock(),
         email,
-        password,
-        isTestRequest
+        password
       );
     });
     test('should call database', () => {
-      expect(sqlDataSource.loginBuyer).toHaveBeenCalledWith(
+      expect(sqlDataSource.validateCredentials).toHaveBeenCalledWith(
         email,
-        password,
-        isTestRequest
+        password
       );
     });
 

@@ -5,7 +5,8 @@ export type BuyerResolver = {
   Mutation: {
     /* eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types */
     createBuyer: IResolverObject<any, any, any> & Function;
-    loginBuyer: IResolverObject<any, any, any> & Function;
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types */
+    validateCredentialsBuyer: IResolverObject<any, any, any> & Function;
   };
 };
 

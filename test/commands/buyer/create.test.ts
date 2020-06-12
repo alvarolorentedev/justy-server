@@ -13,7 +13,7 @@ import sqlDatabase from '../../../src/dataSources/buyer/SqlDatabase';
 
 describe('create buyer', () => {
   const sqlDataSource = {
-    createBuyer: jest.fn(),
+    create: jest.fn(),
   };
 
   const getSqlDataSourceFromMock = (): sqlDatabase =>
@@ -26,8 +26,8 @@ describe('create buyer', () => {
     const isTestRequest = false;
 
     beforeAll(async () => {
-      sqlDataSource.createBuyer.mockReset();
-      sqlDataSource.createBuyer.mockResolvedValue(undefined);
+      sqlDataSource.create.mockReset();
+      sqlDataSource.create.mockResolvedValue(undefined);
       result = await createBuyer(
         getSqlDataSourceFromMock(),
         email,
@@ -37,7 +37,7 @@ describe('create buyer', () => {
     });
 
     test('should call database', () => {
-      expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(
+      expect(sqlDataSource.create).toHaveBeenCalledWith(
         email,
         password,
         isTestRequest
@@ -57,9 +57,9 @@ describe('create buyer', () => {
     const isTestRequest = false;
 
     beforeAll(async () => {
-      sqlDataSource.createBuyer.mockReset();
+      sqlDataSource.create.mockReset();
       mockErrorLogger.mockReset();
-      sqlDataSource.createBuyer.mockRejectedValue(expectedError);
+      sqlDataSource.create.mockRejectedValue(expectedError);
       result = await createBuyer(
         getSqlDataSourceFromMock(),
         email,
@@ -68,7 +68,7 @@ describe('create buyer', () => {
       );
     });
     test('should call database', () => {
-      expect(sqlDataSource.createBuyer).toHaveBeenCalledWith(
+      expect(sqlDataSource.create).toHaveBeenCalledWith(
         email,
         password,
         isTestRequest

@@ -1,5 +1,5 @@
 import create from '../../commands/buyer/create';
-import login from '../../commands/buyer/login';
+import validateCredentials from '../../commands/buyer/validateCredentials';
 import BuyerResolver from '../../types/BuyerResolver';
 import { DataSources } from '../../types/DataSources';
 
@@ -13,14 +13,11 @@ export default ({
         dataSources,
         isTestRequest,
       }: { dataSources: DataSources; isTestRequest: boolean }
-    ) => await create(dataSources.sqlBuyerAPI, email, password, isTestRequest),    
-    loginBuyer: async (
+    ) => await create(dataSources.sqlBuyerAPI, email, password, isTestRequest),
+    validateCredentialsBuyer: async (
       _,
       { email, password }: { email: string; password: string },
-      {
-        dataSources,
-        isTestRequest,
-      }: { dataSources: DataSources; isTestRequest: boolean }
-    ) => await login(dataSources.sqlBuyerAPI, email, password, isTestRequest),
+      { dataSources }: { dataSources: DataSources }
+    ) => await validateCredentials(dataSources.sqlBuyerAPI, email, password),
   },
 } as unknown) as BuyerResolver;

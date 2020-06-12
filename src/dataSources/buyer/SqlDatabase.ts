@@ -1,7 +1,7 @@
 /// <reference types="../../../types/index" />
 import { v4 } from 'uuid';
 import { SQLDataSource, DataConfig } from 'datasource-sql';
-import { hash } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
 
 export default class SqlDatabase extends SQLDataSource {
   saltRounds = 10;
@@ -10,7 +10,7 @@ export default class SqlDatabase extends SQLDataSource {
     super(config);
   }
 
-  public async createBuyer(
+  public async create(
     email: string,
     password: string,
     isTestRequest: boolean
@@ -27,7 +27,17 @@ export default class SqlDatabase extends SQLDataSource {
       .into('BUYERS');
   }
 
-  loginBuyer(email: string, password: string, isTestRequest: boolean) {
-    throw new Error("Method not implemented.");
+  public async validateCredentials(
+    email: string,
+    password: string
+  ): Promise<boolean> {
+    const queryResult = await this.db
+      .select('*')
+      .from('BUYERS')
+      .where({ email });
+    return (
+      queryResult.length !== 0 &&
+      (await compare(password, queryResult[0].password))
+    );
   }
 }
