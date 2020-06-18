@@ -9,7 +9,7 @@
     "test:cov": "jest --coverage && cat ./coverage/lcov.info",
     "start:local": "NODE_ENV=development ts-node .",
     "start": "NODE_ENV=production ts-node .",
-    "start:dev": "NODE_ENV=development ts-node-dev .",
+    "start:dev": "NODE_ENV=development ts-node-dev --poll .",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "migrate:local:init": "touch local.sqlite && NODE_ENV=development db-migrate up",
